@@ -1,0 +1,40 @@
+function w = writhe(L)
+    n = size(L,2);
+    w = zeros(n,1);
+    for i =1:n
+        w(i) = cross(L(:,i));
+    end
+    w = sum(w);
+end
+
+
+
+function val = cross(x)
+
+    [a,b,a2,b2] = deal(x(1),x(2),x(3),x(4));
+    if abs(a2-a) ~= 1
+        [a, a2] = deal(a2,a)
+    end
+    if abs(b2-b) ~= 1
+        [b, b2] = deal(b2,b)
+    end
+
+    if a2 > a
+        if b2 > b
+            val = -1;
+        else
+            val = 1;
+        end
+    else
+        if b2 > b
+            val = 1;
+        else
+            val = -1;
+        end
+    end
+end
+
+
+L = [2,3;4,1;1,4;3,2];
+
+writhe(L)
